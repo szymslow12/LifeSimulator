@@ -1,5 +1,7 @@
 package com.codecool.lifeSimulator.model;
 
+import javafx.scene.canvas.Canvas;
+
 import java.util.stream.IntStream;
 
 public class Planet {
@@ -27,5 +29,11 @@ public class Planet {
         Square square = new Square();
         square.setPosition(new Position(posX, posY));
         return square;
+    }
+
+
+    public Canvas paintSquareCanvas() {
+        Canvas canvas = new Canvas();
+        return canvas;
     }
 }
