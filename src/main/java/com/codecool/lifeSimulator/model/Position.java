@@ -19,4 +19,10 @@ public class Position {
     public int getY() {
         return posY;
     }
+
+
+    @Override
+    public String toString() {
+        return String.format("[x=%s, y=%s]", posX, posY);
+    }
 }
