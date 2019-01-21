@@ -12,7 +12,7 @@ public class AppController extends Pane {
     private Planet planet;
 
     public AppController() {
-        setBackground(new Background(new BackgroundFill(Color.web("#ff9999"), CornerRadii.EMPTY, Insets.EMPTY)));
+        setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
     public void run() {
