@@ -44,14 +44,34 @@ public class Square {
 
     public Canvas getSquareCanvas() {
         Canvas canvas = new Canvas(100, 100);
-        canvas.setEffect(new DropShadow(15, Color.web("#000000")));
+        GraphicsContext context = canvas.getGraphicsContext2D();
+        // 96 because square has 4 sides and each side has line with 1px size
+        drawShape(context, 96, 1.5f);
+        setCanvasProperties(canvas);
+        return canvas;
+    }
+
+
+    private void setCanvasProperties(Canvas canvas) {
         float canvasX = position.getX() * 100;
         float canvasY = position.getY() * 100;
-        GraphicsContext context = canvas.getGraphicsContext2D();
-        context.strokeRect(0, 0, 100, 100);
-        canvas.setLayoutX(canvasX);
-        canvas.setLayoutY(canvasY);
-        return canvas;
+        canvas.setLayoutX(canvasX + 10);
+        canvas.setLayoutY(canvasY + 10);
+        canvas.setEffect(new DropShadow(15, Color.web("#000000")));
+    }
+
+
+    private void drawShape(GraphicsContext context, float squareSide, float translatePos) {
+        context.strokeRect(0, 0, squareSide, squareSide);
+        if (name.equals("FOOD")) {
+            float squareFillSize = squareSide - translatePos;
+            context.setFill(Color.web("#00e64d"));
+            context.fillRect(translatePos,translatePos, squareFillSize, squareFillSize);
+        } else if (name.equals("LIFE")) {
+            float lifePos = squareSide / 4 + translatePos;
+            context.setFill(Color.web("#ff0000"));
+            context.fillOval(lifePos, lifePos, 50,50);
+        }
     }
 
     @Override
