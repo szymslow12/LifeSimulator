@@ -17,8 +17,15 @@ public class Planet {
     public void generatePlanetState() {
         IntStream.range(0, planetState.length).forEach(
             height -> IntStream.range(0, planetState[height].length).forEach(
-                width -> planetState[height][width] = new Square()
+                width -> planetState[height][width] = generateSquare(width, height)
             )
         );
+    }
+
+
+    private Square generateSquare(int posX, int posY) {
+        Square square = new Square();
+        square.setPosition(new Position(posX, posY));
+        return square;
     }
 }
