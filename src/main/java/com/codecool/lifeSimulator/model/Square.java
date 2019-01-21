@@ -38,6 +38,6 @@ public class Square {
 
     @Override
     public String toString() {
-        return String.format("Square: name=%s, energy=%s", name, energy);
+        return String.format("Square: name=%s, energy=%s, position=%s", name, energy, position);
     }
 }
