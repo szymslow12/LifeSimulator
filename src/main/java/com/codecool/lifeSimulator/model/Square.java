@@ -1,5 +1,10 @@
 package com.codecool.lifeSimulator.model;
 
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.paint.Color;
+
 public class Square {
 
     private String name;
@@ -34,6 +39,19 @@ public class Square {
 
     public Position getPosition() {
         return position;
+    }
+
+
+    public Canvas getSquareCanvas() {
+        Canvas canvas = new Canvas(100, 100);
+        canvas.setEffect(new DropShadow(15, Color.web("#000000")));
+        float canvasX = position.getX() * 100;
+        float canvasY = position.getY() * 100;
+        GraphicsContext context = canvas.getGraphicsContext2D();
+        context.strokeRect(0, 0, 100, 100);
+        canvas.setLayoutX(canvasX);
+        canvas.setLayoutY(canvasY);
+        return canvas;
     }
 
     @Override
