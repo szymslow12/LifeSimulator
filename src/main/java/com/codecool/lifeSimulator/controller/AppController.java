@@ -12,7 +12,10 @@ public class AppController extends Pane {
     private Planet planet;
 
     public AppController() {
+        planet = new Planet(10, 10);
+        planet.generatePlanetState();
         setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), CornerRadii.EMPTY, Insets.EMPTY)));
+        getChildren().add(planet.paintSquareCanvas());
     }
 
     public void run() {
