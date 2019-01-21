@@ -14,7 +14,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         AppController controller = new AppController();
-        primaryStage.setFullScreen(true);
+        primaryStage.setMaximized(true);
         primaryStage.setTitle("Life Simulator");
         primaryStage.setScene(new Scene(controller));
         primaryStage.show();
