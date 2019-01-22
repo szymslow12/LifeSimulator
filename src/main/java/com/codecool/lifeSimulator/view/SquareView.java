@@ -13,6 +13,10 @@ public abstract class SquareView extends Canvas {
         this.square = square;
     }
 
+    public Square getSquare() {
+        return square;
+    }
+
     private Canvas getSquareCanvas() {
         Canvas canvas = new Canvas(100, 100);
         GraphicsContext context = canvas.getGraphicsContext2D();
