@@ -6,6 +6,8 @@ import javafx.scene.text.Font;
 
 public class LifeForm extends Square {
 
+    private Movements movements = new Movements();
+  
     public LifeForm(int posX, int poxY) {
         super("LIFE_FORM", 100, posX, poxY);
     }
@@ -20,5 +22,13 @@ public class LifeForm extends Square {
         context.setFill(Color.web("#000000"));
         context.setFont(new Font(10));
         context.fillText("Energy: " + getEnergy(), translatePos, translatePos * 6);
+    }
+
+    public void move(Position position) {
+        movements.randomMove(position);
+    }
+
+    public void splitIntoToForm() {
+        //TODO
     }
 }

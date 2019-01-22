@@ -40,6 +40,11 @@ public class AppController extends Pane implements Runnable{
     }
 
 
+    public synchronized Planet getPlanet() {
+        return planet;
+    }
+
+  
     public void run() {
         while(true) {
             Square[][] planetState = planet.getPlanetState();
