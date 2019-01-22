@@ -1,42 +1,27 @@
 package com.codecool.lifeSimulator.controller;
 
 import com.codecool.lifeSimulator.model.*;
+import com.codecool.lifeSimulator.view.PlanetRender;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 import java.util.Random;
-import java.util.stream.Stream;
 
 public class AppController extends Pane implements Runnable{
     private Planet planet;
+    private PlanetRender render;
 
     public AppController() {
         planet = new Planet(10, 10);
         planet.generatePlanetState();
         setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), CornerRadii.EMPTY, Insets.EMPTY)));
-        addPlanetStateToScene();
+        render = new PlanetRender();
+        render.addPlanetStateToScene(this);
         new Thread(this, "AppController").start();
-
     }
 
-
-    private void addPlanetStateToScene() {
-        Square[][] planetState = planet.getPlanetState();
-        //for tests
-        planetState[0][4] = new Food(4, 0);
-        planetState[4][1] = new Food(1, 4);
-        planetState[4][4] = new LifeForm(4, 4);
-        Stream.of(planetState).forEach(
-            line -> Stream.of(line).forEach(
-                square -> getChildren().add(square.getCanvas())
-            )
-        );
-    }
-
-
+  
     public synchronized Planet getPlanet() {
         return planet;
     }
@@ -51,27 +36,8 @@ public class AppController extends Pane implements Runnable{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            updateGameWindow(planetState);
+            render.updateGameWindow(planetState, this);
         }
-    }
-
-    private void updateGameWindow(Square[][] planetState) {
-        Square food = new Food(1 , 4);
-        getChildren().parallelStream().forEach(square -> updateCanvasSquare(square, planetState));
-    }
-
-
-    private void updateCanvasSquare(Node square, Square[][] planetState) {
-        long y = Math.round((square.getLayoutY() - 10) / 100);
-        long x = Math.round((square.getLayoutX() - 10) / 100);
-        double squareY = planetState[(int) y][(int) x].getPosition().getY() * 100;
-        double squareX = planetState[(int) y][(int) x].getPosition().getX() * 100;
-        Canvas canvas = planetState[(int) y][(int) x].getCanvas();
-        canvas.setLayoutX(squareX + 10);
-        canvas.setLayoutY(squareY + 10);
-//        square.setLayoutX(squareX + 10);
-//        square.setLayoutY(squareY + 10);
-
     }
 
 
