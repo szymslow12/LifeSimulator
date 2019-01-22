@@ -6,7 +6,9 @@ import javafx.geometry.Insets;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
-import java.util.Random;
+import java.util.*;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class AppController extends Pane implements Runnable{
     private Planet planet;
@@ -26,46 +28,44 @@ public class AppController extends Pane implements Runnable{
         return planet;
     }
 
-  
+
+
     public void run() {
         while(true) {
             Square[][] planetState = planet.getPlanetState();
-            AppController.shuffleArray(planetState);
+            AppController.shufflePositions(planetState);
             try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.sleep(1000);
+            } catch (InterruptedException err) {
+                err.printStackTrace();
             }
-            render.updateGameWindow(planetState, this);
+            render.update(planetState, this);
         }
+
     }
 
 
-    private static void shuffleArray(Square[][] array)
+    private static void shufflePositions(Square[][] array)
     {
-        int index;
-        Square temp;
         Random random = new Random();
-        /*for (int i = array.length - 1; i > 0; i--)
-        {
-            index = random.nextInt(i + 1);
-            temp = array[index];
-            array[index] = array[i];
-            array[i] = temp;
-        }*/
-        for (Square[] line: array) {
-            for (int i = 0; i < line.length; i++) {
-                index = random.nextInt( line.length);
-                if (index == line.length) {
-                    System.out.println("Index = " + index);
-                    break;
-                }
-                temp = line[index];
-                System.out.println(line[index].getPosition() + " changed to " + line[i].getPosition());
-                line[index].setPosition(line[i].getPosition());
-                System.out.println(line[i].getPosition() + " changed to " + temp.getPosition());
-                line[i].setPosition(temp.getPosition());
+        List<Position> positions = new LinkedList<Position>() {
+            private void addPositions() {
+                IntStream.range(0, 10).forEach(y -> IntStream.range(0, 10).forEach(x -> add(new Position(x, y))));
+                Collections.shuffle(this);
             }
-        }
+
+            {
+                addPositions();
+            }
+        };
+        Stream.of(array).forEach(line -> Stream.of(line).forEach(square -> changePosition(square, positions, random)));
+    }
+
+    private static void changePosition(Square square, List<Position> positions, Random random) {
+        int index = random.nextInt(positions.size());
+        Position position = positions.get(index);
+        positions.remove(index);
+        square.setPosition(position);
+
     }
 }
