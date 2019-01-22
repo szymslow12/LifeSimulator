@@ -10,16 +10,12 @@ public abstract class Square {
     private String name;
     private int energy;
     private Position position;
-
-    public Square() {
-        this.name = "BLANK";
-        this.energy = 0;
-    }
-
+    private Canvas canvas;
 
     public Square(String name, int energy) {
         this.name = name;
         this.energy = energy;
+        canvas = getSquareCanvas();
     }
 
     public String getName() {
@@ -42,7 +38,11 @@ public abstract class Square {
     }
 
 
-    public Canvas getSquareCanvas() {
+    public Canvas getCanvas() {
+        return canvas;
+    }
+
+    private Canvas getSquareCanvas() {
         Canvas canvas = new Canvas(100, 100);
         GraphicsContext context = canvas.getGraphicsContext2D();
         // 96 because square has 4 sides and each side has line with 1px size
