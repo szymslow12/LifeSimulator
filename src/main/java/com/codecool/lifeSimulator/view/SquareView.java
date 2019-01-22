@@ -19,6 +19,11 @@ public abstract class SquareView extends Canvas {
         return square;
     }
 
+
+    public void setSquare(Square square) {
+        this.square = square;
+    }
+
     private void renderSquare() {
         GraphicsContext context = getGraphicsContext2D();
         // 96 because square has 4 sides and each side has line with 1px size
