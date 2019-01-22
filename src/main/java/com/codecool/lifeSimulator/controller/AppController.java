@@ -26,12 +26,9 @@ public class AppController extends Pane implements Runnable{
     private void addPlanetStateToScene() {
         Square[][] planetState = planet.getPlanetState();
         //for tests
-        planetState[0][4] = new Food();
-        planetState[0][4].setPosition(new Position(4, 0));
-        planetState[4][1] = new Food();
-        planetState[4][1].setPosition(new Position(1, 4));
-        planetState[4][4] = new LifeForm();
-        planetState[4][4].setPosition(new Position(4, 4));
+        planetState[0][4] = new Food(4, 0);
+        planetState[4][1] = new Food(1, 4);
+        planetState[4][4] = new LifeForm(4, 4);
         Stream.of(planetState).forEach(
             line -> Stream.of(line).forEach(
                 square -> getChildren().add(square.getCanvas())
@@ -59,8 +56,7 @@ public class AppController extends Pane implements Runnable{
     }
 
     private void updateGameWindow(Square[][] planetState) {
-        Square food = new Food();
-        food.setPosition(new Position(1 , 4));
+        Square food = new Food(1 , 4);
         getChildren().parallelStream().forEach(square -> updateCanvasSquare(square, planetState));
     }
 
