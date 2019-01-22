@@ -24,8 +24,6 @@ public class Planet {
 
 
     private Square generateSquare(int posX, int posY) {
-        Square square = new Blank();
-        square.setPosition(new Position(posX, posY));
-        return square;
+        return new Blank(posX, posY);
     }
 }

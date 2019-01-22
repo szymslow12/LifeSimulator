@@ -5,8 +5,8 @@ import javafx.scene.paint.Color;
 
 public class Food extends Square {
 
-    public Food() {
-        super("FOOD", 5);
+    public Food(int posX, int poxY) {
+        super("FOOD", 5, posX, poxY);
     }
 
 

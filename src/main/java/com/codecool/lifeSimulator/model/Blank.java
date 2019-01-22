@@ -4,8 +4,8 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class Blank extends Square {
 
-    public Blank() {
-        super("BLANK", 0);
+    public Blank(int posX, int poxY) {
+        super("BLANK", 0, posX, poxY);
     }
 
 

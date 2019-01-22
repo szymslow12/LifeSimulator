@@ -12,9 +12,10 @@ public abstract class Square {
     private Position position;
     private Canvas canvas;
 
-    public Square(String name, int energy) {
+    public Square(String name, int energy, int posX, int posY) {
         this.name = name;
         this.energy = energy;
+        position = new Position(posX, posY);
         canvas = getSquareCanvas();
     }
 

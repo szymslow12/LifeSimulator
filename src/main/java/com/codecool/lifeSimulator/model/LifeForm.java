@@ -6,8 +6,8 @@ import javafx.scene.text.Font;
 
 public class LifeForm extends Square {
 
-    public LifeForm() {
-        super("LIFE_FORM", 100);
+    public LifeForm(int posX, int poxY) {
+        super("LIFE_FORM", 100, posX, poxY);
     }
 
 
