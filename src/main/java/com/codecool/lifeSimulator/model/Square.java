@@ -61,23 +61,8 @@ public abstract class Square {
     }
 
 
-    /*private void drawShape(GraphicsContext context, float squareSide, float translatePos) {
-        context.strokeRect(0, 0, squareSide, squareSide);
-        if (name.equals("FOOD")) {
-            float squareFillSize = squareSide - translatePos - 0.5f;
-            context.setFill(Color.web("#00e64d"));
-            context.fillRect(translatePos,translatePos, squareFillSize, squareFillSize);
-        } else if (name.equals("LIFE")) {
-            float lifePos = squareSide / 4;
-            context.setFill(Color.web("#ff0000"));
-            context.fillOval(lifePos, lifePos, 50,50);
-            context.setFill(Color.web("#000000"));
-            context.setFont(new Font(10));
-            context.fillText("Energy: " + energy, translatePos, translatePos * 6);
-        }
-    }*/
-
     abstract void drawShape(GraphicsContext context, float squareSide, float translatePos);
+
 
     @Override
     public String toString() {
