@@ -13,53 +13,64 @@ class Movements {
         createMovementList();
     }
 
+    private void createMovementList() {
+        moves.add(moveUp());
+        moves.add(moveDown());
+        moves.add(moveLeft());
+        moves.add(moveRight());
+    }
+
     void randomMove(Position position) {
         int randomNum = ThreadLocalRandom.current().nextInt(0, moves.size() + 1);
         moves.get(randomNum).move(position);
     }
 
-    private void createMovementList() {
-        moves.add(moveUp());
-        moves.add(moveDown());
-    }
-
     private CommandMoves moveUp() {
-        return position -> {
-            int x = position.getX() - 1;
-            if (x < 0) {
-                x = CommandMoves.planetHight - 1;
-            }
-            position.setPosX(x);
-        };
+        return this::moveUpMethod;
     }
 
     private CommandMoves moveDown() {
-        return position -> {
-            int x = position.getX() + 1;
-            if (x > CommandMoves.planetHight) {
-                x = 0;
-            }
-            position.setPosX(x);
-        };
+        return this::moveDownMethod;
     }
 
     private CommandMoves moveRight() {
-        return position -> {
-            int y = position.getY() + 1;
-            if (y > CommandMoves.planetWidth) {
-                y = 0;
-            }
-            position.setPosY(y);
-        };
+        return this::moveRightMethod;
     }
 
     private CommandMoves moveLeft() {
-        return position -> {
-            int y = position.getY() - 1;
-            if (y < CommandMoves.planetWidth) {
-                y = CommandMoves.planetWidth - 1;
-            }
-            position.setPosY(y);
-        };
+        return this::moveLeftMethod;
     }
+
+    private void moveUpMethod(Position position) {
+        int x = position.getX() - 1;
+        if (x < 0) {
+            x = CommandMoves.planetHight - 1;
+        }
+        position.setPosX(x);
+    }
+
+    private void moveDownMethod(Position position) {
+        int x = position.getX() + 1;
+        if (x > CommandMoves.planetHight) {
+            x = 0;
+        }
+        position.setPosX(x);
+    }
+
+    private void moveRightMethod(Position position) {
+        int y = position.getY() + 1;
+        if (y > CommandMoves.planetWidth) {
+            y = 0;
+        }
+        position.setPosY(y);
+    }
+
+    private void moveLeftMethod(Position position) {
+        int y = position.getY() - 1;
+        if (y < CommandMoves.planetWidth) {
+            y = CommandMoves.planetWidth - 1;
+        }
+        position.setPosY(y);
+    }
+
 }
