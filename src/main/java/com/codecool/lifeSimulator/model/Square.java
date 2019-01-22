@@ -6,7 +6,7 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class Square {
+public abstract class Square {
 
     private String name;
     private int energy;
@@ -62,7 +62,7 @@ public class Square {
     }
 
 
-    private void drawShape(GraphicsContext context, float squareSide, float translatePos) {
+    /*private void drawShape(GraphicsContext context, float squareSide, float translatePos) {
         context.strokeRect(0, 0, squareSide, squareSide);
         if (name.equals("FOOD")) {
             float squareFillSize = squareSide - translatePos - 0.5f;
@@ -76,7 +76,9 @@ public class Square {
             context.setFont(new Font(10));
             context.fillText("Energy: " + energy, translatePos, translatePos * 6);
         }
-    }
+    }*/
+
+    abstract void drawShape(GraphicsContext context, float squareSide, float translatePos);
 
     @Override
     public String toString() {
