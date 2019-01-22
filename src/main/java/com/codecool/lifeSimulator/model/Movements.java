@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 class Movements {
+    private int planetHight = 10;
+    private int planetWidth = 10;
 
     private List<CommandMoves> moves = new ArrayList<>();
 
@@ -76,14 +78,14 @@ class Movements {
     private void moveUpMethod(Position position) {
         int x = position.getX() - 1;
         if (x < 0) {
-            x = CommandMoves.planetHight - 1;
+            x = planetHight - 1;
         }
         position.setPosX(x);
     }
 
     private void moveDownMethod(Position position) {
         int x = position.getX() + 1;
-        if (x > CommandMoves.planetHight) {
+        if (x > planetHight) {
             x = 0;
         }
         position.setPosX(x);
@@ -91,7 +93,7 @@ class Movements {
 
     private void moveRightMethod(Position position) {
         int y = position.getY() + 1;
-        if (y > CommandMoves.planetWidth) {
+        if (y > planetWidth) {
             y = 0;
         }
         position.setPosY(y);
@@ -99,8 +101,8 @@ class Movements {
 
     private void moveLeftMethod(Position position) {
         int y = position.getY() - 1;
-        if (y < CommandMoves.planetWidth) {
-            y = CommandMoves.planetWidth - 1;
+        if (y < planetWidth) {
+            y = planetWidth - 1;
         }
         position.setPosY(y);
     }
