@@ -42,4 +42,24 @@ class Movements {
             position.setPosX(x);
         };
     }
+
+    private CommandMoves moveRight() {
+        return position -> {
+            int y = position.getY() + 1;
+            if (y > CommandMoves.planetWidth) {
+                y = 0;
+            }
+            position.setPosY(y);
+        };
+    }
+
+    private CommandMoves moveLeft() {
+        return position -> {
+            int y = position.getY() - 1;
+            if (y < CommandMoves.planetWidth) {
+                y = CommandMoves.planetWidth - 1;
+            }
+            position.setPosY(y);
+        };
+    }
 }
