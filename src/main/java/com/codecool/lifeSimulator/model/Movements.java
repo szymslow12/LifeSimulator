@@ -9,7 +9,7 @@ class Movements {
 
     private List<CommandMoves> moves = new ArrayList<>();
 
-    public Movements() {
+    Movements() {
         createMovementList();
     }
 
@@ -18,6 +18,10 @@ class Movements {
         moves.add(moveDown());
         moves.add(moveLeft());
         moves.add(moveRight());
+        moves.add(moveUpRight());
+        moves.add(moveUpLeft());
+        moves.add(moveDownRight());
+        moves.add(moveDownLeft());
     }
 
     void randomMove(Position position) {
@@ -39,6 +43,34 @@ class Movements {
 
     private CommandMoves moveLeft() {
         return this::moveLeftMethod;
+    }
+
+    private CommandMoves moveUpRight() {
+        return position -> {
+            moveUpMethod(position);
+            moveRightMethod(position);
+        };
+    }
+
+    private CommandMoves moveUpLeft() {
+        return position -> {
+            moveUpMethod(position);
+            moveLeftMethod(position);
+        };
+    }
+
+    private CommandMoves moveDownRight() {
+        return position -> {
+            moveDownMethod(position);
+            moveRightMethod(position);
+        };
+    }
+
+    private CommandMoves moveDownLeft() {
+        return position -> {
+            moveDownMethod(position);
+            moveLeftMethod(position);
+        };
     }
 
     private void moveUpMethod(Position position) {
