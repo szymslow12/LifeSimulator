@@ -3,8 +3,8 @@ package com.codecool.lifeSimulator.model;
 import com.codecool.lifeSimulator.controller.AppController;
 
 public interface CommandMoves {
-    int planetHight = new AppController().getPlanet().getPlanetState().length;
-    int planetWidth = new AppController().getPlanet().getPlanetState()[0].length;
+    int planetHight = 10;
+    int planetWidth = 10;
 
     void move(Position position);
 }
