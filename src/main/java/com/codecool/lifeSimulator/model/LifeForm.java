@@ -1,9 +1,13 @@
 package com.codecool.lifeSimulator.model;
 
-public class LifeForm extends Square implements Moveable{
+import com.codecool.lifeSimulator.controller.AppController;
 
-    public void move() {
-        //TODO
+public class LifeForm extends Square {
+
+    private Movements movements = new Movements();
+
+    public void move(Position position) {
+        movements.randomMove(position);
     }
 
     public void splitIntoToForm() {
