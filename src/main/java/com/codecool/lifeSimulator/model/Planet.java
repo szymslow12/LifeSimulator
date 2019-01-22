@@ -9,8 +9,8 @@ public class Planet {
         return planetState;
     }
 
-    public Planet(int planetHight, int planetWidth) {
-        planetState = new Square[planetHight][planetWidth];
+    public Planet(int planetHeight, int planetWidth) {
+        planetState = new Square[planetHeight][planetWidth];
     }
 
 
