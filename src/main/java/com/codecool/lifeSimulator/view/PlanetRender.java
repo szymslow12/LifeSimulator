@@ -19,9 +19,9 @@ public class PlanetRender {
         planetState[4][1] = new Food(1, 4);
         planetState[4][4] = new LifeForm(4, 4);
         Stream.of(planetState).forEach(
-                line -> Stream.of(line).forEach(
-                        square -> controller.getChildren().add(square.getCanvas())
-                )
+            line -> Stream.of(line).forEach(
+                square -> controller.getChildren().add(SquareView.renderSquare(square))
+            )
         );
     }
 
@@ -36,12 +36,9 @@ public class PlanetRender {
         long x = Math.round((square.getLayoutX() - 10) / 100);
         double squareY = planetState[(int) y][(int) x].getPosition().getY() * 100;
         double squareX = planetState[(int) y][(int) x].getPosition().getX() * 100;
-        Canvas canvas = planetState[(int) y][(int) x].getCanvas();
+        SquareView canvas = (SquareView) square;
         canvas.setLayoutX(squareX + 10);
         canvas.setLayoutY(squareY + 10);
-//        square.setLayoutX(squareX + 10);
-//        square.setLayoutY(squareY + 10);
-
     }
 
 }
