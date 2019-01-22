@@ -9,8 +9,8 @@ public class Planet {
         return planetState;
     }
 
-    public Planet(int planetHight, int planetWidth) {
-        planetState = new Square[planetHight][planetWidth];
+    public Planet(int planetHeight, int planetWidth) {
+        planetState = new Square[planetHeight][planetWidth];
     }
 
 
@@ -24,8 +24,6 @@ public class Planet {
 
 
     private Square generateSquare(int posX, int posY) {
-        Square square = new Square();
-        square.setPosition(new Position(posX, posY));
-        return square;
+        return new Blank(posX, posY);
     }
 }
