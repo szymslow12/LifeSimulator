@@ -21,8 +21,7 @@ public class AppController extends Pane implements Runnable{
         new Thread(this, "AppController").start();
     }
 
-
-
+  
     public synchronized Planet getPlanet() {
         return planet;
     }
