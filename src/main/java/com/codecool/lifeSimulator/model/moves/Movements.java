@@ -1,15 +1,19 @@
-package com.codecool.lifeSimulator.model;
+package com.codecool.lifeSimulator.model.moves;
 
+
+import com.codecool.lifeSimulator.model.Position;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-class Movements {
+public class Movements {
+    private int planetHight = 51;
+    private int planetWidth = 92;
 
     private List<CommandMoves> moves = new ArrayList<>();
 
-    Movements() {
+    public Movements() {
         createMovementList();
     }
 
@@ -24,8 +28,8 @@ class Movements {
         moves.add(moveDownLeft());
     }
 
-    void randomMove(Position position) {
-        int randomNum = ThreadLocalRandom.current().nextInt(0, moves.size() + 1);
+    public void randomMove(Position position) {
+        int randomNum = ThreadLocalRandom.current().nextInt(0, moves.size() );
         moves.get(randomNum).move(position);
     }
 
@@ -74,35 +78,35 @@ class Movements {
     }
 
     private void moveUpMethod(Position position) {
-        int x = position.getX() - 1;
-        if (x < 0) {
-            x = CommandMoves.planetHight - 1;
+        int y = position.getY() - 1;
+        if (y < 0) {
+            y = planetHight - 1;
         }
-        position.setPosX(x);
+        position.setPosY(y);
     }
 
     private void moveDownMethod(Position position) {
-        int x = position.getX() + 1;
-        if (x > CommandMoves.planetHight) {
-            x = 0;
-        }
-        position.setPosX(x);
-    }
-
-    private void moveRightMethod(Position position) {
         int y = position.getY() + 1;
-        if (y > CommandMoves.planetWidth) {
+        if (y > planetHight) {
             y = 0;
         }
         position.setPosY(y);
     }
 
-    private void moveLeftMethod(Position position) {
-        int y = position.getY() - 1;
-        if (y < CommandMoves.planetWidth) {
-            y = CommandMoves.planetWidth - 1;
+    private void moveRightMethod(Position position) {
+        int x = position.getX() + 1;
+        if (x > planetWidth) {
+            x = 0;
         }
-        position.setPosY(y);
+        position.setPosX(x);
+    }
+
+    private void moveLeftMethod(Position position) {
+        int x = position.getX() - 1;
+        if (x < planetWidth) {
+            x = planetWidth - 1;
+        }
+        position.setPosX(x);
     }
 
 }

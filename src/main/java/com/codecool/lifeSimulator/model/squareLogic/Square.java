@@ -1,6 +1,6 @@
-package com.codecool.lifeSimulator.model;
+package com.codecool.lifeSimulator.model.squareLogic;
 
-import javafx.scene.canvas.Canvas;
+import com.codecool.lifeSimulator.model.Position;
 
 public class Square {
 
@@ -21,6 +21,11 @@ public class Square {
 
     public int getEnergy() {
         return energy;
+    }
+
+
+    public void setEnergy(int energy) {
+        this.energy = energy;
     }
 
 

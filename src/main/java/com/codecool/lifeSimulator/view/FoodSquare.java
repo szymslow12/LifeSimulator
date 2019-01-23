@@ -1,6 +1,6 @@
 package com.codecool.lifeSimulator.view;
 
-import com.codecool.lifeSimulator.model.Square;
+import com.codecool.lifeSimulator.model.squareLogic.Square;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 

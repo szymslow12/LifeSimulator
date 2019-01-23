@@ -1,4 +1,4 @@
-package com.codecool.lifeSimulator.model;
+package com.codecool.lifeSimulator.model.squareLogic;
 
 public class Food extends Square {
 
