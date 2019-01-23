@@ -15,7 +15,7 @@ public class AppController extends Pane implements Runnable{
     private PlanetRender render;
 
     public AppController() {
-        planet = new Planet(100, 100);
+        planet = new Planet(51, 92);
         planet.generatePlanetState();
         setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), CornerRadii.EMPTY, Insets.EMPTY)));
         render = new PlanetRender();
@@ -50,7 +50,7 @@ public class AppController extends Pane implements Runnable{
         Random random = new Random();
         List<Position> positions = new LinkedList<Position>() {
             private void addPositions() {
-                IntStream.range(0, 10).forEach(y -> IntStream.range(0, 10).forEach(x -> add(new Position(x, y))));
+                IntStream.range(0, 51).forEach(y -> IntStream.range(0, 92).forEach(x -> add(new Position(x, y))));
                 Collections.shuffle(this);
             }
 

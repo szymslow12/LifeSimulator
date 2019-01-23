@@ -13,6 +13,12 @@ import java.util.stream.Stream;
 
 public class PlanetRender {
 
+    private boolean flag;
+
+    public PlanetRender() {
+        flag = true;
+    }
+
 
     public void addPlanetStateToScene(AppController controller) {
         Square[][] planetState = controller.getPlanet().getPlanetState();
@@ -42,10 +48,10 @@ public class PlanetRender {
 
     private void updateCanvasSquare(int index, Square[][] planetState, AppController controller) {
         Node square = controller.getChildren().get(index);
-        long y = Math.round((square.getLayoutY() - 10) / 100);
-        long x = Math.round((square.getLayoutX() - 10) / 100);
-        double squareY = planetState[(int) y][(int) x].getPosition().getY() * 100;
-        double squareX = planetState[(int) y][(int) x].getPosition().getX() * 100;
+        long y = Math.round((square.getLayoutY() - 5) / 20);
+        long x = Math.round((square.getLayoutX() - 7.5) / 20);
+        double squareY = planetState[(int) y][(int) x].getPosition().getY() * 20;
+        double squareX = planetState[(int) y][(int) x].getPosition().getX() * 20;
         SquareView canvas = SquareView.renderSquare(planetState[(int) y][(int) x]);
         controller.getChildren().remove(square);
         controller.getChildren().add(canvas);
