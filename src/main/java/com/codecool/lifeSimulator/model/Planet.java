@@ -1,5 +1,9 @@
 package com.codecool.lifeSimulator.model;
 
+import com.codecool.lifeSimulator.view.PlanetRender;
+
+import java.util.Random;
+
 public class Planet {
     private Square[][] planetState;
 
@@ -23,8 +27,26 @@ public class Planet {
     }
 
 
-    public synchronized void generateFoodOnRandomPosition() throws InterruptedException {
-        boolean isGenerated;
+    public synchronized void generateFoodOnRandomPosition(PlanetRender render) throws InterruptedException {
+        if (render.getFlag()) {
+            System.out.println(Thread.currentThread().getName() + " waits");
+            wait();
+        }
+        boolean isGenerated= false;
         Thread.sleep(1000);
+        System.out.println(Thread.currentThread().getName() + " started generating food!");
+        while (!isGenerated) {
+            Random random = new Random();
+            int randomPosX = random.nextInt(planetState[0].length);
+            int randomPosY = random.nextInt(planetState.length);
+            Square square = planetState[randomPosY][randomPosX];
+            if (square.getName().equals("BLANK")) {
+                System.out.println(String.format("Food generated on positions x=%s, y=%s", randomPosX, randomPosY));
+                planetState[randomPosY][randomPosX] = new Food(randomPosX, randomPosY);
+                isGenerated = true;
+            }
+        }
+        render.setFlag(true);
+        notifyAll();
     }
 }
