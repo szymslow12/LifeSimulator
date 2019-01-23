@@ -1,14 +1,12 @@
 package com.codecool.lifeSimulator.model;
 
-import com.codecool.lifeSimulator.view.PlanetRender;
+import com.codecool.lifeSimulator.controller.AppController;
 
 public class FoodGenerator extends Thread{
-    private Planet planet;
-    private PlanetRender render;
+    private AppController controller;
 
-    public FoodGenerator(Planet planet, PlanetRender render) {
-        this.planet = planet;
-        this.render = render;
+    public FoodGenerator(AppController controller) {
+        this.controller = controller;
         setName("FoodGenerator");
     }
 
@@ -17,7 +15,7 @@ public class FoodGenerator extends Thread{
     public void run() {
         while (true) {
             try {
-                planet.generateFoodOnRandomPosition(render);
+                controller.generateFoodOnRandomPosition();
             } catch (InterruptedException e){
                 e.printStackTrace();
             }
