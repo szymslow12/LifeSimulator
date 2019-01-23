@@ -12,13 +12,11 @@ public class FillingMap {
     private int widthMap;
     private Square[][] planetState;
     private List<Position> usedPosition = new ArrayList<>();
-    private AppController controller;
 
-    public FillingMap(Square[][] planetState, AppController controller) {
+    public FillingMap(Square[][] planetState) {
         this.heightMap = planetState.length;
         this.widthMap = planetState[0].length;
         this.planetState = planetState;
-        this.controller = controller;
     }
 
     public void fillMap(int percentOfMap, int count) {
@@ -55,7 +53,7 @@ public class FillingMap {
             usedPosition.add(position);
             int posY = position.getY();
             int posX = position.getX();
-            LifeForm lifeForm = new LifeForm(posX, posY, controller);
+            LifeForm lifeForm = new LifeForm(posX, posY);
             planetState[posY][posX] = lifeForm;
             (new Thread(lifeForm)).start();
         }

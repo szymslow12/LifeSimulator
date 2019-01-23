@@ -12,16 +12,13 @@ public class Planet {
     public Square[][] getPlanetState() {
         return planetState;
     }
-    private AppController controller;
-
-    public Planet(int planetHeight, int planetWidth, AppController controller) {
-        this.controller = controller;
+    public Planet(int planetHeight, int planetWidth) {
         planetState = new Square[planetHeight][planetWidth];
     }
 
 
     public void generatePlanetState() {
-        FillingMap fillingMap = new FillingMap(planetState, controller);
+        FillingMap fillingMap = new FillingMap(planetState);
         fillingMap.fillMap(30,10);
     }
 

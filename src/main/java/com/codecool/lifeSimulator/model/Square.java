@@ -8,13 +8,11 @@ public class Square {
     private String name;
     private int energy;
     private Position position;
-    private AppController controller;
 
-    public Square(String name, int energy, int posX, int posY, AppController controller) {
+    public Square(String name, int energy, int posX, int posY) {
         this.name = name;
         this.energy = energy;
         position = new Position(posX, posY);
-        this.controller = controller;
     }
 
     public String getName() {
