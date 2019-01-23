@@ -21,10 +21,26 @@ public class PlanetRender implements Runnable {
 
 
     private void updateGameWindow(Square[][] planetState, AppController controller) {
-        controller.getChildren().clear();
+//        controller.getChildren().clear();
+//        Stream.of(planetState).forEach(
+//            line -> Stream.of(line).forEach(
+//                square -> controller.getChildren().add(SquareView.renderSquare(square))
+//            )
+//        );
+        controller.getChildren().stream().forEach(square -> checkAndReplace((SquareView) square, planetState, controller));
+    }
+
+
+    private void checkAndReplace(SquareView view, Square[][] planetState, AppController controller) {
         Stream.of(planetState).forEach(
-            line -> Stream.of(line).forEach(
-                square -> controller.getChildren().add(SquareView.renderSquare(square))
+            squareLine -> Stream.of(squareLine).forEach(
+                square -> {
+                    Square viewSquare = view.getSquare();
+                    if (!viewSquare.getName().equals(square.getName()) && viewSquare.isPositionEqual(square)) {
+                        controller.getChildren().remove(view);
+                        controller.getChildren().add(SquareView.renderSquare(square));
+                    }
+                }
             )
         );
     }
