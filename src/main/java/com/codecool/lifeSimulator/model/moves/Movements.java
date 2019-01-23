@@ -87,7 +87,7 @@ public class Movements {
 
     private void moveDownMethod(Position position) {
         int y = position.getY() + 1;
-        if (y > planetHight) {
+        if (y >= planetHight) {
             y = 0;
         }
         position.setPosY(y);
@@ -95,7 +95,7 @@ public class Movements {
 
     private void moveRightMethod(Position position) {
         int x = position.getX() + 1;
-        if (x > planetWidth) {
+        if (x >= planetWidth) {
             x = 0;
         }
         position.setPosX(x);
@@ -103,7 +103,7 @@ public class Movements {
 
     private void moveLeftMethod(Position position) {
         int x = position.getX() - 1;
-        if (x < planetWidth) {
+        if (x < 0) {
             x = planetWidth - 1;
         }
         position.setPosX(x);
