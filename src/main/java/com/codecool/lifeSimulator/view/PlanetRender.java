@@ -5,10 +5,8 @@ import com.codecool.lifeSimulator.model.Food;
 import com.codecool.lifeSimulator.model.LifeForm;
 import com.codecool.lifeSimulator.model.Square;
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
 
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class PlanetRender {
