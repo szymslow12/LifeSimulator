@@ -15,7 +15,7 @@ public class AppController extends Pane{
     private PlanetRender render;
 
     public AppController() {
-        planet = new Planet(51, 92, this);
+        planet = new Planet(51, 92);
         planet.generatePlanetState();
         setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), CornerRadii.EMPTY, Insets.EMPTY)));
         render = new PlanetRender();
