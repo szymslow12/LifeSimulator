@@ -1,8 +1,7 @@
 package com.codecool.lifeSimulator.model;
 
-import com.codecool.lifeSimulator.view.PlanetRender;
-
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Planet {
     private Square[][] planetState;
@@ -24,13 +23,17 @@ public class Planet {
 
     public void generateFoodOnRandomPosition() {
         Random random = new Random();
-        boolean isGenerated= false;
+        boolean isGenerated = false;
+        int numberOfFoodToAdd = ThreadLocalRandom.current().nextInt(1, 5);
         System.out.println(Thread.currentThread().getName() + " started generating food!");
-        while (!isGenerated) {
-            int randomPosX = random.nextInt(planetState[0].length);
-            int randomPosY = random.nextInt(planetState.length);
-            Square square = planetState[randomPosY][randomPosX];
-            isGenerated = generateFood(square);
+        for (int i = 0; i < numberOfFoodToAdd; i++) {
+            while (!isGenerated) {
+                int randomPosX = random.nextInt(planetState[0].length);
+                int randomPosY = random.nextInt(planetState.length);
+                Square square = planetState[randomPosY][randomPosX];
+                isGenerated = generateFood(square);
+            }
+            isGenerated = false;
         }
     }
 
