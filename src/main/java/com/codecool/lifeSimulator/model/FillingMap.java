@@ -11,9 +11,9 @@ public class FillingMap {
     private Square[][] planetState;
     private List<Position> usedPosition = new ArrayList<>();
 
-    public FillingMap(int heightMap, int widthMap, Square[][] planetState) {
-        this.heightMap = heightMap;
-        this.widthMap = widthMap;
+    public FillingMap(Square[][] planetState) {
+        this.heightMap = planetState.length;
+        this.widthMap = planetState[0].length;
         this.planetState = planetState;
     }
 
@@ -23,6 +23,7 @@ public class FillingMap {
             fillMapWithLifeForm(count);
             fillMapWithBlank();
         }
+        else
         throw new IllegalArgumentException("Wrong proportions");
     }
 
@@ -32,7 +33,7 @@ public class FillingMap {
         return area > areaLeft;
     }
 
-    public void fillMapWithFood(int percentOfMap) {
+    private void fillMapWithFood(int percentOfMap) {
         int numberSquareToFill = heightMap * percentOfMap;
 
         while (numberSquareToFill > 0) {
@@ -40,12 +41,13 @@ public class FillingMap {
             usedPosition.add(position);
             int posY = position.getY();
             int posX = position.getX();
+            System.out.println(posX + " " + posY);
             planetState[posY][posX] = new Food(posX, posY);
             numberSquareToFill--;
         }
     }
 
-    public void fillMapWithLifeForm(int count) {
+    private void fillMapWithLifeForm(int count) {
         for (int i = 0; i < count; i++) {
             Position position = generateUniquePosition();
             usedPosition.add(position);
@@ -78,8 +80,8 @@ public class FillingMap {
     }
 
     private Position generateRandomPos() {
-        int randomY = ThreadLocalRandom.current().nextInt(0, heightMap + 1);
-        int randomX = ThreadLocalRandom.current().nextInt(0, widthMap + 1);
+        int randomY = ThreadLocalRandom.current().nextInt(0, heightMap);
+        int randomX = ThreadLocalRandom.current().nextInt(0, widthMap);
         return new Position(randomX, randomY);
     }
 

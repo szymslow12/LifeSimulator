@@ -1,5 +1,7 @@
 package com.codecool.lifeSimulator.model;
 
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class Planet {
@@ -15,15 +17,23 @@ public class Planet {
 
 
     public void generatePlanetState() {
-        IntStream.range(0, planetState.length).forEach(
-            height -> IntStream.range(0, planetState[height].length).forEach(
-                width -> planetState[height][width] = generateSquare(width, height)
-            )
-        );
+        FillingMap fillingMap = new FillingMap(planetState);
+        fillingMap.fillMap(30,10);
     }
 
 
-    private Square generateSquare(int posX, int posY) {
-        return new Blank(posX, posY);
-    }
+//    public void generatePlanetState() {
+//        IntStream.range(0, planetState.length).forEach(
+//            height -> IntStream.range(0, planetState[height].length).forEach(
+//                width -> planetState[height][width] = generateSquare(width, height)
+//            )
+//        );
+//    }
+//
+//
+//    private Square generateSquare(int posX, int posY) {
+//        return new Blank(posX, posY);
+//    }
+
+
 }
