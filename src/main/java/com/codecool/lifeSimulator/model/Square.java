@@ -1,7 +1,5 @@
 package com.codecool.lifeSimulator.model;
 
-import javafx.scene.canvas.Canvas;
-
 public class Square {
 
     private String name;
@@ -21,6 +19,11 @@ public class Square {
 
     public int getEnergy() {
         return energy;
+    }
+
+
+    public void setEnergy(int energy) {
+        this.energy = energy;
     }
 
 
