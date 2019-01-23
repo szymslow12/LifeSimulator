@@ -1,6 +1,8 @@
 package com.codecool.lifeSimulator.model;
 
+import java.util.List;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Planet {
     private Square[][] planetState;
@@ -25,5 +27,11 @@ public class Planet {
 
     private Square generateSquare(int posX, int posY) {
         return new Blank(posX, posY);
+    }
+
+
+    public synchronized void generateFoodOnRandomPosition() throws InterruptedException {
+        List<Square> squaresWithoutLifeForm = Stream.of();
+        Thread.sleep(1000);
     }
 }
