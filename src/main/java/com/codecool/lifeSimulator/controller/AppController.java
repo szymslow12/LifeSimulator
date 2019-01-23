@@ -15,13 +15,29 @@ public class AppController extends Pane{
     private PlanetRender render;
 
     public AppController() {
-        planet = new Planet(51, 92);
-        planet.generatePlanetState();
         setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), CornerRadii.EMPTY, Insets.EMPTY)));
+        generatePlanet(51, 92);
+        renderPlanetState();
+        runThreads();
+    }
+
+
+    private void generatePlanet(int height, int width) {
+        planet = new Planet(height, width);
+        planet.generatePlanetState();
+    }
+
+
+    private void renderPlanetState() {
         render = new PlanetRender();
         render.addPlanetStateToScene(this);
+    }
+
+
+    private void runThreads() {
         new MapUpdater(this).start();
 //        new MapShuffle(this).start();
+        new FoodGenerator(planet, render).start();
     }
 
   
@@ -32,11 +48,13 @@ public class AppController extends Pane{
 
     public synchronized void updatePlanetState() throws InterruptedException {
         if (!render.getFlag()) {
+            System.out.println(Thread.currentThread().getName() + " waits");
             wait();
         }
-        Thread.sleep(1000);
+        System.out.println(Thread.currentThread().getName() + " started updating map!");
         render.update(planet.getPlanetState(), this);
         render.setFlag(false);
+        System.out.println("Map updated!");
         notify();
     }
 
