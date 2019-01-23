@@ -21,6 +21,7 @@ public class FillingMap {
         if (checkFillingProportions(percentOfMap, count)) {
             fillMapWithFood(percentOfMap);
             fillMapWithLifeForm(count);
+            fillMapWithBlank();
         }
         throw new IllegalArgumentException("Wrong proportions");
     }
@@ -30,7 +31,6 @@ public class FillingMap {
         int areaLeft = area - (area * percentOfMap) - count;
         return area > areaLeft;
     }
-
 
     public void fillMapWithFood(int percentOfMap) {
         int numberSquareToFill = heightMap * percentOfMap;
@@ -43,6 +43,29 @@ public class FillingMap {
             planetState[posY][posX] = new Food(posX, posY);
             numberSquareToFill--;
         }
+    }
+
+    public void fillMapWithLifeForm(int count) {
+        for (int i = 0; i < count; i++) {
+            Position position = generateUniquePosition();
+            usedPosition.add(position);
+            int posY = position.getY();
+            int posX = position.getX();
+            planetState[posY][posX] = new LifeForm(posX, posY);
+        }
+    }
+
+    private void fillMapWithBlank() {
+
+        for (int i = 0; i < heightMap; i++) {
+            for (int j = 0; j < widthMap; j++) {
+                Position position = new Position(j, i);
+                if (!usedPosition.contains(position)) {
+                    planetState[i][j] = new Blank(j, i);
+                }
+            }
+        }
+
     }
 
     private Position generateUniquePosition() {
@@ -62,16 +85,6 @@ public class FillingMap {
 
     private boolean checkPositionIsNotUsed(Position position) {
         return usedPosition.contains(position);
-    }
-
-    public void fillMapWithLifeForm(int count) {
-        for (int i = 0; i < count; i++) {
-            Position position = generateUniquePosition();
-            usedPosition.add(position);
-            int posY = position.getY();
-            int posX = position.getX();
-            planetState[posY][posX] = new LifeForm(posX, posY);
-        }
     }
 
 }
