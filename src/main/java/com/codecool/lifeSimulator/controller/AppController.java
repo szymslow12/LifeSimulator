@@ -46,7 +46,7 @@ public class AppController extends Pane{
             System.out.println(Thread.currentThread().getName() + " waits");
             wait();
         }
-        Thread.sleep(1000);
+        Thread.sleep(500);
         planet.generateFoodOnRandomPosition();
         render.setFlag(true);
         notify();
@@ -58,7 +58,7 @@ public class AppController extends Pane{
             System.out.println(Thread.currentThread().getName() + " waits");
             wait();
         }
-        Thread.sleep(1000);
+//        Thread.sleep(500);
         System.out.println(Thread.currentThread().getName() + " started updating map!");
         render.update(planet.getPlanetState(), this);
         render.setFlag(false);
