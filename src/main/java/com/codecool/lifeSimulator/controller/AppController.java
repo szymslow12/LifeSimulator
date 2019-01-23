@@ -10,7 +10,7 @@ import java.util.*;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class AppController extends Pane implements Runnable{
+public class AppController extends Pane{
     private Planet planet;
     private PlanetRender render;
 
@@ -32,7 +32,7 @@ public class AppController extends Pane implements Runnable{
 
 
 
-    public void run() {
+    /*public void run() {
         while(true) {
             Square[][] planetState = planet.getPlanetState();
             AppController.shufflePositions(planetState);
@@ -43,7 +43,7 @@ public class AppController extends Pane implements Runnable{
             }
             render.update(planetState, this);
         }
-    }
+    }*/
 
 
     public synchronized void updatePlanetState() throws InterruptedException {
