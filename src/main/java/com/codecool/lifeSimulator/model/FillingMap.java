@@ -1,5 +1,7 @@
 package com.codecool.lifeSimulator.model;
 
+import com.codecool.lifeSimulator.controller.AppController;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -10,11 +12,13 @@ public class FillingMap {
     private int widthMap;
     private Square[][] planetState;
     private List<Position> usedPosition = new ArrayList<>();
+    private AppController controller;
 
-    public FillingMap(Square[][] planetState) {
+    public FillingMap(Square[][] planetState, AppController controller) {
         this.heightMap = planetState.length;
         this.widthMap = planetState[0].length;
         this.planetState = planetState;
+        this.controller = controller;
     }
 
     public void fillMap(int percentOfMap, int count) {
@@ -22,9 +26,8 @@ public class FillingMap {
             fillMapWithFood(percentOfMap);
             fillMapWithLifeForm(count);
             fillMapWithBlank();
-        }
-        else
-        throw new IllegalArgumentException("Wrong proportions");
+        } else
+            throw new IllegalArgumentException("Wrong proportions");
     }
 
     private boolean checkFillingProportions(int percentOfMap, int count) {
@@ -41,7 +44,6 @@ public class FillingMap {
             usedPosition.add(position);
             int posY = position.getY();
             int posX = position.getX();
-            System.out.println(posX + " " + posY);
             planetState[posY][posX] = new Food(posX, posY);
             numberSquareToFill--;
         }
@@ -53,7 +55,9 @@ public class FillingMap {
             usedPosition.add(position);
             int posY = position.getY();
             int posX = position.getX();
-            planetState[posY][posX] = new LifeForm(posX, posY);
+            LifeForm lifeForm = new LifeForm(posX, posY, controller);
+            planetState[posY][posX] = lifeForm;
+            (new Thread(lifeForm)).start();
         }
     }
 
@@ -61,8 +65,7 @@ public class FillingMap {
 
         for (int i = 0; i < heightMap; i++) {
             for (int j = 0; j < widthMap; j++) {
-                Position position = new Position(j, i);
-                if (!usedPosition.contains(position) && planetState[i][j] == null) {
+                if (planetState[i][j] == null) {
                     planetState[i][j] = new Blank(j, i);
                 }
             }

@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 class Movements {
-    private int planetHight = 10;
-    private int planetWidth = 10;
+    private int planetHight = 51;
+    private int planetWidth = 92;
 
     private List<CommandMoves> moves = new ArrayList<>();
 
@@ -27,7 +27,7 @@ class Movements {
     }
 
     void randomMove(Position position) {
-        int randomNum = ThreadLocalRandom.current().nextInt(0, moves.size() + 1);
+        int randomNum = ThreadLocalRandom.current().nextInt(0, moves.size() );
         moves.get(randomNum).move(position);
     }
 
@@ -76,35 +76,35 @@ class Movements {
     }
 
     private void moveUpMethod(Position position) {
-        int x = position.getX() - 1;
-        if (x < 0) {
-            x = planetHight - 1;
+        int y = position.getY() - 1;
+        if (y < 0) {
+            y = planetHight - 1;
         }
-        position.setPosX(x);
+        position.setPosY(y);
     }
 
     private void moveDownMethod(Position position) {
-        int x = position.getX() + 1;
-        if (x > planetHight) {
-            x = 0;
-        }
-        position.setPosX(x);
-    }
-
-    private void moveRightMethod(Position position) {
         int y = position.getY() + 1;
-        if (y > planetWidth) {
+        if (y > planetHight) {
             y = 0;
         }
         position.setPosY(y);
     }
 
-    private void moveLeftMethod(Position position) {
-        int y = position.getY() - 1;
-        if (y < planetWidth) {
-            y = planetWidth - 1;
+    private void moveRightMethod(Position position) {
+        int x = position.getX() + 1;
+        if (x > planetWidth) {
+            x = 0;
         }
-        position.setPosY(y);
+        position.setPosX(x);
+    }
+
+    private void moveLeftMethod(Position position) {
+        int x = position.getX() - 1;
+        if (x < planetWidth) {
+            x = planetWidth - 1;
+        }
+        position.setPosX(x);
     }
 
 }
