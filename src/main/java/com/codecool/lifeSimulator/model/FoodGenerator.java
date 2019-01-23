@@ -37,7 +37,7 @@ public class FoodGenerator implements Runnable {
         int x = position.getX();
         int y = position.getY();
         if (square.getName().equals("BLANK")) {
-            planetState[y][x] = new Food(x, y);
+            planetState[y][x] = new Food(x, y, controller);
             return true;
         }
         return false;

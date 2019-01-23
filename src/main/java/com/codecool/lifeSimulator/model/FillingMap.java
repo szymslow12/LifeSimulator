@@ -1,5 +1,6 @@
 package com.codecool.lifeSimulator.model;
 
+import com.codecool.lifeSimulator.controller.AppController;
 import com.codecool.lifeSimulator.model.squareLogic.Blank;
 import com.codecool.lifeSimulator.model.squareLogic.Food;
 import com.codecool.lifeSimulator.model.squareLogic.LifeForm;
@@ -15,11 +16,13 @@ public class FillingMap {
     private int widthMap;
     private Square[][] planetState;
     private List<Position> usedPosition = new ArrayList<>();
+    private AppController appController;
 
-    public FillingMap(Square[][] planetState) {
+    public FillingMap(Square[][] planetState, AppController appController) {
         this.heightMap = planetState.length;
         this.widthMap = planetState[0].length;
         this.planetState = planetState;
+        this.appController = appController;
     }
 
     public void fillMap(int percentOfMap, int count) {
@@ -45,7 +48,7 @@ public class FillingMap {
             usedPosition.add(position);
             int posY = position.getY();
             int posX = position.getX();
-            planetState[posY][posX] = new Food(posX, posY);
+            planetState[posY][posX] = new Food(posX, posY, appController);
             numberSquareToFill--;
         }
     }
@@ -56,7 +59,7 @@ public class FillingMap {
             usedPosition.add(position);
             int posY = position.getY();
             int posX = position.getX();
-            LifeForm lifeForm = new LifeForm(posX, posY);
+            LifeForm lifeForm = new LifeForm(posX, posY, appController);
             planetState[posY][posX] = lifeForm;
             (new Thread(lifeForm)).start();
         }
@@ -67,7 +70,7 @@ public class FillingMap {
         for (int i = 0; i < heightMap; i++) {
             for (int j = 0; j < widthMap; j++) {
                 if (planetState[i][j] == null) {
-                    planetState[i][j] = new Blank(j, i);
+                    planetState[i][j] = new Blank(j, i, appController);
                 }
             }
         }
