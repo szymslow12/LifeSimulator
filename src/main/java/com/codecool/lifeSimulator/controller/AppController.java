@@ -15,11 +15,26 @@ public class AppController extends Pane{
     private PlanetRender render;
 
     public AppController() {
-        planet = new Planet(51, 92);
-        planet.generatePlanetState();
         setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), CornerRadii.EMPTY, Insets.EMPTY)));
+        generatePlanet(51, 92);
+        renderPlanetState();
+        runThreads();
+    }
+
+
+    private void generatePlanet(int height, int width) {
+        planet = new Planet(height, width);
+        planet.generatePlanetState();
+    }
+
+
+    private void renderPlanetState() {
         render = new PlanetRender();
         render.addPlanetStateToScene(this);
+    }
+
+
+    private void runThreads() {
         new MapUpdater(this).start();
         new MapShuffle(this).start();
     }
