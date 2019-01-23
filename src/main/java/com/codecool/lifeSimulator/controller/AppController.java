@@ -15,7 +15,7 @@ public class AppController extends Pane implements Runnable{
     private PlanetRender render;
 
     public AppController() {
-        planet = new Planet(10, 10);
+        planet = new Planet(100, 100);
         planet.generatePlanetState();
         setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), CornerRadii.EMPTY, Insets.EMPTY)));
         render = new PlanetRender();
