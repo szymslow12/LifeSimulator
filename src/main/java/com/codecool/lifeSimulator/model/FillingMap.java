@@ -62,7 +62,7 @@ public class FillingMap {
         for (int i = 0; i < heightMap; i++) {
             for (int j = 0; j < widthMap; j++) {
                 Position position = new Position(j, i);
-                if (!usedPosition.contains(position)) {
+                if (!usedPosition.contains(position) && planetState[i][j] == null) {
                     planetState[i][j] = new Blank(j, i);
                 }
             }
