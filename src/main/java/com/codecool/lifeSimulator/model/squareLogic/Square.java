@@ -39,6 +39,13 @@ public class Square {
     }
 
 
+    public boolean isPositionEqual(Square square) {
+        Position toCompare = square.position;
+        return position.getX() == toCompare.getX() &&
+                position.getY() == toCompare.getY();
+    }
+
+
     @Override
     public String toString() {
         return String.format("Square: name=%s, energy=%s, position=%s", name, energy, position);
