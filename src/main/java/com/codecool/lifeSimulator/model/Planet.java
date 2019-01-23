@@ -1,9 +1,5 @@
 package com.codecool.lifeSimulator.model;
 
-import java.util.List;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
-
 public class Planet {
     private Square[][] planetState;
 
@@ -17,11 +13,8 @@ public class Planet {
 
 
     public void generatePlanetState() {
-        IntStream.range(0, planetState.length).forEach(
-            height -> IntStream.range(0, planetState[height].length).forEach(
-                width -> planetState[height][width] = generateSquare(width, height)
-            )
-        );
+        FillingMap fillingMap = new FillingMap(planetState);
+        fillingMap.fillMap(30,10);
     }
 
 
