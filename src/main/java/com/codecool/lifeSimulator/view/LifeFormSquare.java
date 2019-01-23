@@ -16,9 +16,9 @@ public class LifeFormSquare extends SquareView {
         context.strokeRect(0, 0, squareSide, squareSide);
         float lifePos = squareSide / 4;
         context.setFill(Color.web("#ff0000"));
-        context.fillOval(lifePos, lifePos, 50,50);
+        context.fillOval(lifePos, lifePos, 10,10);
         context.setFill(Color.web("#000000"));
-        context.setFont(new Font(10));
+        context.setFont(new Font(5));
         context.fillText("Energy: " + getSquare().getEnergy(), translatePos, translatePos * 6);
     }
 }

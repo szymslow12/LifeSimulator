@@ -10,7 +10,7 @@ public abstract class SquareView extends Canvas {
     private Square square;
 
     public SquareView(Square square) {
-        super(100, 100);
+        super(20, 20);
         this.square = square;
         renderSquare();
     }
@@ -19,19 +19,24 @@ public abstract class SquareView extends Canvas {
         return square;
     }
 
+
+    public void setSquare(Square square) {
+        this.square = square;
+    }
+
     private void renderSquare() {
         GraphicsContext context = getGraphicsContext2D();
         // 96 because square has 4 sides and each side has line with 1px size
-        drawShape(context, 96, 1.5f);
+        drawShape(context, 16, 1.5f);
         setCanvasProperties();
     }
 
 
     private void setCanvasProperties() {
-        float canvasX = square.getPosition().getX() * 100;
-        float canvasY = square.getPosition().getY() * 100;
-        setLayoutX(canvasX + 10);
-        setLayoutY(canvasY + 10);
+        float canvasX = square.getPosition().getX() * 20;
+        float canvasY = square.getPosition().getY() * 20;
+        setLayoutX(canvasX + 7.5);
+        setLayoutY(canvasY + 5);
         setEffect(new DropShadow(15, Color.web("#000000")));
     }
 
