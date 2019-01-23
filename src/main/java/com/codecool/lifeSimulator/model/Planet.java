@@ -22,18 +22,8 @@ public class Planet {
     }
 
 
-    private Square generateSquare(int posX, int posY) {
-        return new Blank(posX, posY);
-    }
-
-
-    public synchronized void generateFoodOnRandomPosition(PlanetRender render) throws InterruptedException {
-        if (render.getFlag()) {
-            System.out.println(Thread.currentThread().getName() + " waits");
-            wait();
-        }
+    public void generateFoodOnRandomPosition() {
         boolean isGenerated= false;
-        Thread.sleep(1000);
         System.out.println(Thread.currentThread().getName() + " started generating food!");
         while (!isGenerated) {
             Random random = new Random();
@@ -46,7 +36,5 @@ public class Planet {
                 isGenerated = true;
             }
         }
-        render.setFlag(true);
-        notifyAll();
     }
 }
