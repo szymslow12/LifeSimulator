@@ -36,7 +36,8 @@ public class AppController extends Pane{
 
     private void runThreads() {
         new MapUpdater(this).start();
-        new MapShuffle(this).start();
+//        new MapShuffle(this).start();
+        new FoodGenerator(planet, render).start();
     }
 
   
@@ -47,11 +48,13 @@ public class AppController extends Pane{
 
     public synchronized void updatePlanetState() throws InterruptedException {
         if (!render.getFlag()) {
+            System.out.println(Thread.currentThread().getName() + " waits");
             wait();
         }
-        Thread.sleep(1000);
+        System.out.println(Thread.currentThread().getName() + " started updating map!");
         render.update(planet.getPlanetState(), this);
         render.setFlag(false);
+        System.out.println("Map updated!");
         notify();
     }
 
