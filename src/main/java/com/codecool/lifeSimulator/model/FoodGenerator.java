@@ -15,7 +15,7 @@ public class FoodGenerator implements Runnable {
     }
 
 
-    public void generateFoodOnRandomPosition() {
+    private void generateFoodOnRandomPosition() {
         Square[][] planetState = controller.getPlanet().getPlanetState();
         Random random = new Random();
         boolean isGenerated = false;
