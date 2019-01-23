@@ -31,7 +31,7 @@ public class Planet {
 
 
     public synchronized void generateFoodOnRandomPosition() throws InterruptedException {
-        List<Square> squaresWithoutLifeForm = Stream.of();
+        boolean isGenerated;
         Thread.sleep(1000);
     }
 }
