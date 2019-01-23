@@ -20,7 +20,6 @@ public class AppController extends Pane{
         setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), CornerRadii.EMPTY, Insets.EMPTY)));
         render = new PlanetRender();
         render.addPlanetStateToScene(this);
-//        new Thread(this, "AppController").start();
         new MapUpdater(this).start();
         new MapShuffle(this).start();
     }
@@ -29,21 +28,6 @@ public class AppController extends Pane{
     public synchronized Planet getPlanet() {
         return planet;
     }
-
-
-
-    /*public void run() {
-        while(true) {
-            Square[][] planetState = planet.getPlanetState();
-            AppController.shufflePositions(planetState);
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException err) {
-                err.printStackTrace();
-            }
-            render.update(planetState, this);
-        }
-    }*/
 
 
     public synchronized void updatePlanetState() throws InterruptedException {
