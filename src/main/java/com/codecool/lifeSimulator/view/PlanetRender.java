@@ -1,7 +1,7 @@
 package com.codecool.lifeSimulator.view;
 
 import com.codecool.lifeSimulator.controller.AppController;
-import com.codecool.lifeSimulator.model.Square;
+import com.codecool.lifeSimulator.model.squareLogic.Square;
 import javafx.application.Platform;
 
 import java.util.stream.Stream;

@@ -1,5 +1,7 @@
 package com.codecool.lifeSimulator.model;
 
+import com.codecool.lifeSimulator.model.squareLogic.Square;
+
 public class Planet {
     private Square[][] planetState;
 

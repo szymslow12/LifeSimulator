@@ -1,5 +1,10 @@
 package com.codecool.lifeSimulator.model;
 
+import com.codecool.lifeSimulator.model.squareLogic.Blank;
+import com.codecool.lifeSimulator.model.squareLogic.Food;
+import com.codecool.lifeSimulator.model.squareLogic.LifeForm;
+import com.codecool.lifeSimulator.model.squareLogic.Square;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;

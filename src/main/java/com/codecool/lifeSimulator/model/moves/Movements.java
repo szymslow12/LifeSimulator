@@ -1,17 +1,19 @@
-package com.codecool.lifeSimulator.model;
+package com.codecool.lifeSimulator.model.moves;
 
+
+import com.codecool.lifeSimulator.model.Position;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-class Movements {
+public class Movements {
     private int planetHight = 51;
     private int planetWidth = 92;
 
     private List<CommandMoves> moves = new ArrayList<>();
 
-    Movements() {
+    public Movements() {
         createMovementList();
     }
 
@@ -26,7 +28,7 @@ class Movements {
         moves.add(moveDownLeft());
     }
 
-    void randomMove(Position position) {
+    public void randomMove(Position position) {
         int randomNum = ThreadLocalRandom.current().nextInt(0, moves.size() );
         moves.get(randomNum).move(position);
     }

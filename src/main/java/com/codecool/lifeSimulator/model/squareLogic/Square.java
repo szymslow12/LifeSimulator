@@ -1,4 +1,6 @@
-package com.codecool.lifeSimulator.model;
+package com.codecool.lifeSimulator.model.squareLogic;
+
+import com.codecool.lifeSimulator.model.Position;
 
 public class Square {
 

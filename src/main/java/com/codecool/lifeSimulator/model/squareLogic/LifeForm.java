@@ -1,4 +1,7 @@
-package com.codecool.lifeSimulator.model;
+package com.codecool.lifeSimulator.model.squareLogic;
+
+import com.codecool.lifeSimulator.model.Position;
+import com.codecool.lifeSimulator.model.moves.Movements;
 
 public class LifeForm extends Square implements Runnable {
     private volatile boolean isRunning = false;
