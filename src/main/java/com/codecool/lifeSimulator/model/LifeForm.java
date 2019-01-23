@@ -1,11 +1,9 @@
 package com.codecool.lifeSimulator.model;
 
-import com.codecool.lifeSimulator.controller.AppController;
-
-public class LifeForm extends Square implements Runnable{
+public class LifeForm extends Square implements Runnable {
     private volatile boolean isRunning = true;
     private Movements movements = new Movements();
-  
+
     public LifeForm(int posX, int poxY) {
         super("LIFE_FORM", 100, posX, poxY);
     }
@@ -15,13 +13,15 @@ public class LifeForm extends Square implements Runnable{
     }
 
     @Override
-    public void run() {
+    public synchronized void run() {
 
-        while(isRunning) {
+
+        while (isRunning) {
             Position position = getPosition();
             movements.randomMove(position);
+            System.out.println("dziala");
             try {
-                Thread.sleep(1000);
+                wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

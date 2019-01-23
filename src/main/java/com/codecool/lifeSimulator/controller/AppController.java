@@ -43,10 +43,9 @@ public class AppController extends Pane{
 
     public synchronized void generateFoodOnRandomPosition() throws InterruptedException {
         if (render.getFlag()) {
-            System.out.println(Thread.currentThread().getName() + " waits");
             wait();
         }
-        Thread.sleep(500);
+        Thread.sleep(1000);
         planet.generateFoodOnRandomPosition();
         render.setFlag(true);
         notify();
@@ -57,9 +56,9 @@ public class AppController extends Pane{
         if (!render.getFlag()) {
             wait();
         }
-//        Thread.sleep(500);
+        Thread.sleep(10000);
         render.update(planet.getPlanetState(), this);
         render.setFlag(false);
-        notify();
+        notifyAll();
     }
 }
