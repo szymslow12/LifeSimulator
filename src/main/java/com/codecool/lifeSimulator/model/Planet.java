@@ -47,4 +47,10 @@ public class Planet {
             lifeForms.add((LifeForm) square);
         }
     }
+
+
+    public synchronized void decrementEnergyPoints() throws InterruptedException {
+        Thread.sleep(1000);
+
+    }
 }
