@@ -1,7 +1,7 @@
 package com.codecool.lifeSimulator.model;
 
 public class LifeForm extends Square implements Runnable {
-    private volatile boolean isRunning = true;
+    private volatile boolean isRunning = false;
     private Movements movements = new Movements();
 
     public LifeForm(int posX, int poxY) {
