@@ -20,7 +20,9 @@ public class AppController extends Pane implements Runnable{
         setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), CornerRadii.EMPTY, Insets.EMPTY)));
         render = new PlanetRender();
         render.addPlanetStateToScene(this);
-        new Thread(this, "AppController").start();
+//        new Thread(this, "AppController").start();
+        new MapUpdater(this).start();
+        new MapShuffle(this).start();
     }
 
   
@@ -41,7 +43,27 @@ public class AppController extends Pane implements Runnable{
             }
             render.update(planetState, this);
         }
+    }
 
+
+    public synchronized void updatePlanetState() throws InterruptedException {
+        if (!render.getFlag()) {
+            wait();
+        }
+        Thread.sleep(1000);
+        render.update(planet.getPlanetState(), this);
+        render.setFlag(false);
+        notify();
+    }
+
+
+    public synchronized void shufflePlanetState() throws InterruptedException {
+        if (render.getFlag()) {
+            wait();
+        }
+        AppController.shufflePositions(planet.getPlanetState());
+        render.setFlag(true);
+        notify();
     }
 
 
