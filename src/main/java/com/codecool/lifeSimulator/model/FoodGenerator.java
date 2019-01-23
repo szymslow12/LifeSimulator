@@ -46,7 +46,6 @@ public class FoodGenerator implements Runnable {
     @Override
     public synchronized void run() {
         while (true) {
-            System.out.println("dziala");
             generateFoodOnRandomPosition();
             try {
                 Thread.sleep(1000);
