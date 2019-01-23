@@ -16,7 +16,7 @@ public class PlanetRender {
     private boolean flag;
 
     public PlanetRender() {
-        flag = true;
+        flag = false;
     }
 
 
@@ -31,6 +31,16 @@ public class PlanetRender {
                 square -> controller.getChildren().add(SquareView.renderSquare(square))
             )
         );
+    }
+
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
+
+
+    public boolean getFlag() {
+        return flag;
     }
 
 
