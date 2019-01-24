@@ -1,6 +1,5 @@
 package com.codecool.lifeSimulator.model.squareLogic;
 
-import com.codecool.lifeSimulator.controller.AppController;
 import com.codecool.lifeSimulator.model.Position;
 
 public class Square {
@@ -8,7 +7,6 @@ public class Square {
     private String name;
     private int energy;
     private Position position;
-    private AppController appController;
 
     public Square(String name, int energy, int posX, int posY) {
         this.name = name;

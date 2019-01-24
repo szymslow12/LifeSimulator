@@ -17,7 +17,7 @@ public class Planet {
 
     private void generatePlanetState() {
         FillingMap fillingMap = new FillingMap(planetState);
-        fillingMap.fillMap(30, 10);
+        fillingMap.fillMap(80, 1);
     }
 
 }

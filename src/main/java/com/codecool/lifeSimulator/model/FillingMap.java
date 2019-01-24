@@ -56,7 +56,7 @@ public class FillingMap {
             usedPosition.add(position);
             int posY = position.getY();
             int posX = position.getX();
-            LifeForm lifeForm = new LifeForm(posX, posY);
+            LifeForm lifeForm = new LifeForm(posX, posY, planetState);
             planetState[posY][posX] = lifeForm;
             (new Thread(lifeForm)).start();
         }
