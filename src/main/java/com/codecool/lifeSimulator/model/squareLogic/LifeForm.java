@@ -12,27 +12,18 @@ public class LifeForm extends Square implements Runnable {
     private SquareState squareState;
 
     public LifeForm(int posX, int poxY, Square[][] planetState) {
-        super("LIFE_FORM", 90, posX, poxY);
+        super("LIFE_FORM", 100, posX, poxY);
         this.planetState = planetState;
         movements = new Movements();
         squareState = new SquareState(planetState);
     }
 
-    private void splitIntoTwoForm() {
-        int x = getPosition().getX();
-        int y = getPosition().getY();
-        LifeForm lifeForm = new LifeForm(x, y, planetState);
-        planetState[y][x] = lifeForm;
-        (new Thread(lifeForm)).start();
-    }
 
     @Override
     public synchronized void run() {
 
         while (isRunning) {
-            if (isFullOfEnergy()) {
-                splitIntoTwoForm();
-            }
+
             if(getEnergy() == 0) {
                 isRunning = false;
             }
@@ -43,18 +34,25 @@ public class LifeForm extends Square implements Runnable {
                 movements.randomMove(oldPosition);
                 Position newPosition = getPosition();
 
+
+
                 if(squareState.isFood(newPosition)){
                     increaseEnergy();
                 }
-
                 else if(squareState.isLifeForm(newPosition)){
                     isRunning = false;
                 }
-                setBlank(oldPosition);
+                if (isFullOfEnergy()) {
+                    setEnergy(100);
+                    splitIntoTwoForm();
+                } else {
+                    setBlank(oldPosition);
+                }
+
                 decreaseEnergy();
             }
             try {
-                Thread.sleep(1000);
+                Thread.sleep(5000);
 //                wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -65,7 +63,7 @@ public class LifeForm extends Square implements Runnable {
     }
 
     private boolean isFullOfEnergy() {
-        return getEnergy() >= 100;
+        return getEnergy() >= 120;
     }
 
     private void decreaseEnergy() {
@@ -85,5 +83,13 @@ public class LifeForm extends Square implements Runnable {
 
     private void setBlank(Position pos){
         planetState[pos.getY()][pos.getX()] = new Blank(pos.getX(), pos.getY());
+    }
+
+    private void splitIntoTwoForm() {
+        int x = getPosition().getX();
+        int y = getPosition().getY();
+        LifeForm lifeForm = new LifeForm(x, y, planetState);
+        planetState[y][x] = lifeForm;
+        (new Thread(lifeForm)).start();
     }
 }
