@@ -12,11 +12,12 @@ public class Planet {
     public Planet(int planetHeight, int planetWidth) {
         planetState = new Square[planetHeight][planetWidth];
         generatePlanetState();
+
     }
 
     private void generatePlanetState() {
         FillingMap fillingMap = new FillingMap(planetState);
-        fillingMap.fillMap(30, 10);
+        fillingMap.fillMap(80, 1);
     }
 
 }

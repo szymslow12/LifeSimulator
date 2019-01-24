@@ -1,6 +1,5 @@
 package com.codecool.lifeSimulator.model;
 
-import com.codecool.lifeSimulator.controller.AppController;
 import com.codecool.lifeSimulator.model.squareLogic.Food;
 import com.codecool.lifeSimulator.model.squareLogic.Square;
 

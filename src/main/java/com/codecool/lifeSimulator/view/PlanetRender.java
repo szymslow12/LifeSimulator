@@ -22,9 +22,9 @@ public class PlanetRender implements Runnable {
     private void updateGameWindow(Square[][] planetState, PlanetView view) {
         view.getChildren().clear();
         Stream.of(planetState).forEach(
-            line -> Stream.of(line).forEach(
-                square -> view.getChildren().add(SquareView.renderSquare(square))
-            )
+                line -> Stream.of(line).forEach(
+                        square -> view.getChildren().add(SquareView.renderSquare(square))
+                )
         );
     }
 
