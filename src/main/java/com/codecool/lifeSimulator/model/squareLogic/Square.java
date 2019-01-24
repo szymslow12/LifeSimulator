@@ -10,15 +10,10 @@ public class Square {
     private Position position;
     private AppController appController;
 
-    public Square(String name, int energy, int posX, int posY, AppController appController) {
+    public Square(String name, int energy, int posX, int posY) {
         this.name = name;
         this.energy = energy;
         position = new Position(posX, posY);
-        this.appController = appController;
-    }
-
-    public AppController getAppController() {
-        return appController;
     }
 
     public String getName() {

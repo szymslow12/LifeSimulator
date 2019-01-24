@@ -13,8 +13,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Scene scene = new Scene(new AppController());
-//        scene.getStylesheets().add("css/main.css");
+        AppController appController = new AppController();
+        Scene scene = new Scene(appController.getPlanetView());
         primaryStage.setMaximized(true);
         primaryStage.setTitle("Life Simulator");
         primaryStage.setScene(scene);
