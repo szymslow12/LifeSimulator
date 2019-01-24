@@ -24,7 +24,7 @@ public class Scale {
         double inputDeltaY = event.getDeltaY();
         if (inputDeltaY <= 0 && scaleY > 0.50) {
             viewScale.set(scaleY - ZOOM_DEC);
-        } else if (inputDeltaY < 40 && scaleY < 1.00) {
+        } else if (scaleY < 1.00) {
             viewScale.set(scaleY + ZOOM_DEC);
         }
     };
