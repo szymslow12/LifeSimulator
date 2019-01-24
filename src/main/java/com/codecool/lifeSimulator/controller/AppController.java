@@ -10,14 +10,14 @@ public class AppController {
     private PlanetView planetView;
 
     public AppController() {
-        planet = new Planet(10, 10);
+        planet = new Planet(51, 92);
         planetView = new PlanetView(planet);
         runThreads();
     }
 
     private void runThreads() {
         (new Thread(new PlanetRender(planetView))).start();
-//        (new Thread(new FoodGenerator(planet))).start();
+        (new Thread(new FoodGenerator(planet))).start();
     }
 
 
