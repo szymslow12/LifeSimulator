@@ -22,11 +22,10 @@ public class Scale {
     public EventHandler<ScrollEvent> handleZoom = (ScrollEvent event) -> {
         double scaleY = viewScale.getValue();
         double inputDeltaY = event.getDeltaY();
-        System.out.println("ScaleY=" + scaleY + " InputDeltaY=" + inputDeltaY);
-        if (inputDeltaY < 0 && scaleY > 0.50) {
-            viewScale.subtract(ZOOM_DEC);
-        } else if (inputDeltaY > 0) {
-            viewScale.add(ZOOM_DEC);
+        if (inputDeltaY <= 0 && scaleY > 0.50) {
+            viewScale.set(scaleY - ZOOM_DEC);
+        } else if (inputDeltaY < 40 && scaleY < 1.00) {
+            viewScale.set(scaleY + ZOOM_DEC);
         }
     };
 }
