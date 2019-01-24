@@ -8,15 +8,15 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class FoodGenerator implements Runnable {
-    private AppController controller;
+    private Planet planet;
 
-    public FoodGenerator(AppController controller) {
-        this.controller = controller;
+    public FoodGenerator(Planet planet) {
+        this.planet = planet;
     }
 
 
     private void generateFoodOnRandomPosition() {
-        Square[][] planetState = controller.getPlanet().getPlanetState();
+        Square[][] planetState = planet.getPlanetState();
         Random random = new Random();
         boolean isGenerated = false;
         int numberOfFoodToAdd = ThreadLocalRandom.current().nextInt(1, 5);
@@ -32,7 +32,7 @@ public class FoodGenerator implements Runnable {
     }
 
     private boolean generateFood(Square square) {
-        Square[][] planetState = controller.getPlanet().getPlanetState();
+        Square[][] planetState = planet.getPlanetState();
         Position position = square.getPosition();
         int x = position.getX();
         int y = position.getY();
