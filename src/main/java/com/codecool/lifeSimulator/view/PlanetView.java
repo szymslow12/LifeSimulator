@@ -16,4 +16,9 @@ public class PlanetView extends Pane {
         this.planet = planet;
         setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), CornerRadii.EMPTY, Insets.EMPTY)));
     }
+
+
+    public Planet getPlanet() {
+        return planet;
+    }
 }
