@@ -7,7 +7,7 @@ import javafx.scene.input.ScrollEvent;
 public class Scale {
 
     private DoubleProperty viewScale;
-    private final double ZOOM_DEC = 0.02;
+    private final double ZOOM_DEC = 0.25;
 
     public Scale(DoubleProperty viewScale) {
         this.viewScale = viewScale;
