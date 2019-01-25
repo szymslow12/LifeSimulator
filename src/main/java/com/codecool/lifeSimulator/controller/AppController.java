@@ -17,7 +17,7 @@ public class AppController {
 
     private void runThreads() {
         (new Thread(new PlanetRender(planetView))).start();
-//        (new Thread(new FoodGenerator(planet))).start();
+        (new Thread(new FoodGenerator(planet))).start();
     }
 
 
