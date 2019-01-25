@@ -86,6 +86,7 @@ public class LifeForm extends Square implements Runnable {
 
     private void splitIntoTwoForm(Position pos) {
         LifeForm lifeForm = new LifeForm(pos.getX(), pos.getY(), planetState, lifeFormList);
+        lifeFormList.add(lifeForm);
 //        planetState[pos.getY()][pos.getX()] = lifeForm;
         (new Thread(lifeForm)).start();
     }
