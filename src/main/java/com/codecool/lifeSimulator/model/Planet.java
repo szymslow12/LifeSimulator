@@ -27,7 +27,7 @@ public class Planet {
 
     private void generatePlanetState() {
         FillingMap fillingMap = new FillingMap(planetState, lifeFormList);
-        fillingMap.fillMap(1, 1);
+        fillingMap.fillMap(20, 4);
     }
 
 }
