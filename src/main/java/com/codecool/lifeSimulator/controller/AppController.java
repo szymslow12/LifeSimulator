@@ -10,7 +10,7 @@ public class AppController {
     private PlanetView planetView;
 
     public AppController() {
-        planet = new Planet(51, 92);
+        planet = new Planet(51, 51);
         planetView = new PlanetView(planet);
         runThreads();
     }

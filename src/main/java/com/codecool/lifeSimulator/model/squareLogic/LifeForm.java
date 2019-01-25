@@ -3,6 +3,7 @@ package com.codecool.lifeSimulator.model.squareLogic;
 import com.codecool.lifeSimulator.model.Position;
 import com.codecool.lifeSimulator.model.moves.Movements;
 
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class LifeForm extends Square implements Runnable {
@@ -10,22 +11,26 @@ public class LifeForm extends Square implements Runnable {
     private Movements movements;
     private Square[][] planetState;
     private SquareState squareState;
+    private List<LifeForm> lifeFormList;
 
-    public LifeForm(int posX, int poxY, Square[][] planetState) {
-        super("LIFE_FORM", 100, posX, poxY);
+    public LifeForm(int posX, int poxY,Square[][] planetState, List<LifeForm> lifeFormList) {
+        super("LIFE_FORM", 110, posX, poxY);
         this.planetState = planetState;
         movements = new Movements();
         squareState = new SquareState(planetState);
+        this.lifeFormList = lifeFormList;
     }
-
 
     @Override
     public synchronized void run() {
 
         while (isRunning) {
 
-            if(getEnergy() == 0) {
+            if(getEnergy() <= 0) {
+                squareState.setBlank(getPosition());
                 isRunning = false;
+                lifeFormList.remove(this);
+                break;
             }
             decreaseEnergy();
             if (isMoving()) {
@@ -34,35 +39,35 @@ public class LifeForm extends Square implements Runnable {
                 movements.randomMove(oldPosition);
                 Position newPosition = getPosition();
 
-
-
                 if(squareState.isFood(newPosition)){
                     increaseEnergy();
                 }
                 else if(squareState.isLifeForm(newPosition)){
                     isRunning = false;
+                    lifeFormList.remove(this);
                 }
-                if (isFullOfEnergy()) {
-                    setEnergy(100);
-                    splitIntoTwoForm();
+                if (isReadyToSplit()) {
+                    System.out.println("born");
+                    this.setEnergy(100);
+                    splitIntoTwoForm(oldPosition);
+//                    break;
                 } else {
-                    setBlank(oldPosition);
+                    squareState.setBlank(oldPosition);
                 }
 
                 decreaseEnergy();
             }
             try {
-                Thread.sleep(5000);
+                Thread.sleep(1000);
 //                wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
 
-
     }
 
-    private boolean isFullOfEnergy() {
+    private boolean isReadyToSplit() {
         return getEnergy() >= 120;
     }
 
@@ -81,15 +86,10 @@ public class LifeForm extends Square implements Runnable {
         return i != 5;
     }
 
-    private void setBlank(Position pos){
-        planetState[pos.getY()][pos.getX()] = new Blank(pos.getX(), pos.getY());
-    }
-
-    private void splitIntoTwoForm() {
-        int x = getPosition().getX();
-        int y = getPosition().getY();
-        LifeForm lifeForm = new LifeForm(x, y, planetState);
-        planetState[y][x] = lifeForm;
+    private void splitIntoTwoForm(Position pos) {
+        LifeForm lifeForm = new LifeForm(pos.getX(), pos.getY(), planetState, lifeFormList);
+        lifeFormList.add(lifeForm);
+//        planetState[pos.getY()][pos.getX()] = lifeForm;
         (new Thread(lifeForm)).start();
     }
 }
