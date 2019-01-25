@@ -11,9 +11,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 public class PlanetView extends Pane {
-
-
-
     private Planet planet;
     private Scale scale;
 
