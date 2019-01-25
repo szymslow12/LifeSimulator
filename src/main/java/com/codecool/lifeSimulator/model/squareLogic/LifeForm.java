@@ -3,6 +3,7 @@ package com.codecool.lifeSimulator.model.squareLogic;
 import com.codecool.lifeSimulator.model.Position;
 import com.codecool.lifeSimulator.model.moves.Movements;
 
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class LifeForm extends Square implements Runnable {
@@ -10,12 +11,14 @@ public class LifeForm extends Square implements Runnable {
     private Movements movements;
     private Square[][] planetState;
     private SquareState squareState;
+    private List<LifeForm> lifeFormList;
 
-    public LifeForm(int posX, int poxY, Square[][] planetState) {
+    public LifeForm(int posX, int poxY,Square[][] planetState, List<LifeForm> lifeFormList) {
         super("LIFE_FORM", 110, posX, poxY);
         this.planetState = planetState;
         movements = new Movements();
         squareState = new SquareState(planetState);
+        this.lifeFormList = lifeFormList;
     }
 
     @Override
@@ -82,8 +85,8 @@ public class LifeForm extends Square implements Runnable {
     }
 
     private void splitIntoTwoForm(Position pos) {
-        LifeForm lifeForm = new LifeForm(pos.getX(), pos.getY(), planetState);
-        planetState[pos.getY()][pos.getX()] = lifeForm;
+        LifeForm lifeForm = new LifeForm(pos.getX(), pos.getY(), planetState, lifeFormList);
+//        planetState[pos.getY()][pos.getX()] = lifeForm;
         (new Thread(lifeForm)).start();
     }
 }
