@@ -29,6 +29,7 @@ public class LifeForm extends Square implements Runnable {
             if(getEnergy() <= 0) {
                 squareState.setBlank(getPosition());
                 isRunning = false;
+                lifeFormList.remove(this);
                 break;
             }
             decreaseEnergy();
@@ -43,6 +44,7 @@ public class LifeForm extends Square implements Runnable {
                 }
                 else if(squareState.isLifeForm(newPosition)){
                     isRunning = false;
+                    lifeFormList.remove(this);
                 }
                 if (isReadyToSplit()) {
                     System.out.println("born");
