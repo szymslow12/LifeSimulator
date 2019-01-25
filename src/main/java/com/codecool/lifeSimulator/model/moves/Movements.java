@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Movements {
-    private int planetHight = 10;
-    private int planetWidth = 10;
+    private int planetHight = 51;
+    private int planetWidth = 51;
 
     private List<CommandMoves> moves = new ArrayList<>();
 
